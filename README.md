@@ -21,7 +21,11 @@
 
 ## 安装与运行
 
-### 1. Python 脚本运行
+### 方式一： exe 文件运行
+1. 找到 dist  文件夹
+2. 双击 main.exe 打开工具
+
+### 方式二：Python 脚本运行
 1. 克隆仓库：
    ```bash
    git clone https://github.com/raoneng26/baidu-ocr-batch-rename.git
@@ -33,10 +37,6 @@
 3. 运行工具：
    ```bash
     python main.py
-
-### 2. exe 文件运行
-1. 从 ./dist 下载最新 main.exe
-2. 双击 main.exe 打开工具
 
 ## 获取百度 API Key
 1. 打开 百度 AI 开放平台(https://console.bce.baidu.com/ai-engine/old/#/ai/ocr/app/list)， 登录或注册账号
