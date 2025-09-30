@@ -109,9 +109,9 @@ def post_process(folder):
 
 # ---------- 异步处理文件夹 ----------
 async def main():
-    api_key = 'pOfvxg3GbJ4oEt0Ml6PRhb6J'
-    secret_key = 'gNQKHnIahCfo4gaXDWRCudVK19pxdcSj'
-    folder_path = r'C:\Users\86187\Desktop\autoname'  # 图片文件夹
+    api_key = 'your api_key'
+    secret_key = 'your secret_key'
+    folder_path = r'your folder_path'  # 图片文件夹
     output_folder = folder_path  # 可改为其他输出文件夹
     access_token = get_access_token(api_key, secret_key)
 
