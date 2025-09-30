@@ -39,8 +39,9 @@
 2. 双击 main.exe 打开工具
 
 ## 获取百度 API Key
-1. 打开 百度 AI 开放平台，登录或注册账号
+1. 打开 百度 AI 开放平台(https://console.bce.baidu.com/ai-engine/old/#/ai/ocr/app/list)，登录或注册账号
 2. 进入 控制台 → 我的应用 → 创建应用
+![alt text](image.png)
 3. 选择 OCR 产品类型，完成应用创建
 4. 创建成功后，会看到 API Key 和 Secret Key
 5. 将 Key 填入工具 GUI 或 Python 脚本对应输入框
