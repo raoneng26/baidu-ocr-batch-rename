@@ -30,15 +30,31 @@ async def recognize_text(session, access_token, image_base64):
 def extract_name(words_result):
     for i, line in enumerate(words_result):
         text = line.get('words', '').strip()
+
+        # --- 情况1：常见格式 “姓名张三” ---
         if '姓名' in text:
             name = text.replace('姓名', '').strip()
             if name:
                 return name
+            # 下行可能是姓名
             if i + 1 < len(words_result):
                 next_line = words_result[i + 1].get('words', '').strip()
                 if next_line:
                     return next_line
+
+        # --- 情况2：“姓”“名”分行 ---
+        if text in ('姓', '姓：', '姓:'):
+            # 向下两行查找“名”之后的姓名
+            if i + 1 < len(words_result):
+                next_text = words_result[i + 1].get('words', '').strip()
+                if next_text in ('名', '名：', '名:') and i + 2 < len(words_result):
+                    # 第三行应该是姓名
+                    real_name = words_result[i + 2].get('words', '').strip()
+                    if real_name:
+                        return real_name
     return None
+
+
 
 # ---------- 生成唯一文件名 ----------
 def make_unique_filename(folder, base_name, ext):
@@ -63,8 +79,8 @@ async def process_image(session, access_token, image_path, output_folder, unknow
 
     # 如果返回 QPS 限制错误，可以重试
     retry_count = 0
-    while words_result is None and retry_count < 3:
-        await asyncio.sleep(.5)  # 等待 1 秒再重试
+    while words_result is None and retry_count < 10:
+        await asyncio.sleep(5)  # 等待 1 秒再重试
         words_result = await recognize_text(session, access_token, image_base64)
         retry_count += 1
 
@@ -109,9 +125,9 @@ def post_process(folder):
 
 # ---------- 异步处理文件夹 ----------
 async def main():
-    api_key = 'your api_key'
-    secret_key = 'your secret_key'
-    folder_path = r'your folder_path'  # 图片文件夹
+    api_key = 'kxO9co4I3h1dpnnMkGsWGqr2'
+    secret_key = '84xGvqwMRH4gi0xA9k1NQ7bL875sME4K'
+    folder_path = r'E:\命名\动画（三维动画与特效）\学籍卡片'  # 图片文件夹
     output_folder = folder_path  # 可改为其他输出文件夹
     access_token = get_access_token(api_key, secret_key)
 

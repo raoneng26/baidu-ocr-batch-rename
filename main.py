@@ -215,15 +215,30 @@ class OCRRenameApp:
     def extract_name(self, words_result):
         for i, line in enumerate(words_result):
             text = line.get('words', '').strip()
+
+            # --- 情况1：常见格式 “姓名张三” ---
             if '姓名' in text:
                 name = text.replace('姓名', '').strip()
                 if name:
                     return name
+                # 下行可能是姓名
                 if i + 1 < len(words_result):
                     next_line = words_result[i + 1].get('words', '').strip()
                     if next_line:
                         return next_line
+
+            # --- 情况2：“姓”“名”分行 ---
+            if text in ('姓', '姓：', '姓:'):
+                # 向下两行查找“名”之后的姓名
+                if i + 1 < len(words_result):
+                    next_text = words_result[i + 1].get('words', '').strip()
+                    if next_text in ('名', '名：', '名:') and i + 2 < len(words_result):
+                        # 第三行应该是姓名
+                        real_name = words_result[i + 2].get('words', '').strip()
+                        if real_name:
+                            return real_name
         return None
+
     
     def make_unique_filename(self, folder, base_name, ext):
         candidate = f"{base_name}{ext}"
@@ -244,8 +259,8 @@ class OCRRenameApp:
         
         # 重试机制
         retry_count = 0
-        while words_result is None and retry_count < 3:
-            await asyncio.sleep(0.5)
+        while words_result is None and retry_count < 10:
+            await asyncio.sleep(5)
             words_result = await self.recognize_text(session, access_token, image_base64)
             retry_count += 1
         
