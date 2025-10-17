@@ -1,4 +1,4 @@
-('C:\\Users\\86187\\Desktop\\autoname\\build\\main\\PYZ-00.pyz',
+('C:\\Users\\86187\\Desktop\\autoname_64\\build\\main\\PYZ-00.pyz',
  [('OpenSSL',
    'D:\\anaconda3\\lib\\site-packages\\OpenSSL\\__init__.py',
    'PYMODULE'),
