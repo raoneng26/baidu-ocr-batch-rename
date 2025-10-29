@@ -28,7 +28,7 @@
 
 
 ### 方式二： 网页端运行
-进入网站（https://auto-name.streamlit.app/）
+进入网站：https://auto-name.streamlit.app/
 
 ### 方式三：Python 脚本运行
 1. 克隆仓库：
@@ -82,3 +82,4 @@
 
 
 📢 如果你喜欢这个工具，快点个 ⭐ 吧！每点一次，天上的小星星就会闪烁一次 🌟
+
