@@ -26,7 +26,11 @@
 ![找到 exe](img/op0.png)
 2. 双击 main.exe 打开工具
 
-### 方式二：Python 脚本运行
+
+### 方式二： 网页端运行
+进入网站（https://auto-name.streamlit.app/）
+
+### 方式三：Python 脚本运行
 1. 克隆仓库：
    ```bash
     git clone https://github.com/raoneng26/baidu-ocr-batch-rename.git
@@ -75,5 +79,6 @@
     GUI 依赖 Tkinter（Python 自带，无需额外安装）
 
 ## 支持一下
+
 
 📢 如果你喜欢这个工具，快点个 ⭐ 吧！每点一次，天上的小星星就会闪烁一次 🌟
